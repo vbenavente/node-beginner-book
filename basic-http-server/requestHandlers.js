@@ -3,8 +3,8 @@ function start(response) {
 
   var body = '<html>' +
     '<head>' +
-    '<meta http-equiv="Content-Type" content="text/html; ' +
-    'charset=UTF-8" />' +
+    '<meta http-equiv="Content-Type" content="text/html"; ' +
+    'charset="UTF-8" />' +
     '</head>' +
     '<body>' +
     '<form action="/upload" method="post">' +
@@ -15,7 +15,7 @@ function start(response) {
     '</html>';
 
     response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.write(stdout);
+    response.write(body);
     response.end();
 }
 
