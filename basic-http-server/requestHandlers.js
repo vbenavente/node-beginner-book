@@ -1,24 +1,25 @@
 var querystring = require('querystring'),
     fs = require('fs'),
-    fromidable = require('formidable');
+    formidable = require('formidable');
 
 function start(response) {
   console.log("Request handler 'start' was called.");
 
   var body = '<html>' +
     '<head>' +
-    '<meta http-equiv="Content-Type" content="text/html"; ' +
-    'charset="UTF-8" />' +
+    '<meta http-equiv="Content-Type" ' +
+    'content="text/html"; charset="UTF-8" />' +
     '</head>' +
     '<body>' +
     '<form action="/upload" enctype="multipart/form-data" ' +
     'method="post">' +
-    '<input type="file" value="Upload file" />' +
+    '<input type="file" name="upload" mulitple="multiple">' +
+    '<input type="submit" value="upload file" />' +
     '</form>' +
     '</body>' +
     '</html>';
 
-    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.writeHead(200, {'Content-Type': 'text/html'});
     response.write(body);
     response.end();
 }
@@ -34,7 +35,7 @@ function upload(response, request) {
     fs.rename(files.upload.path, (__dirname + '/tmp/test.png'), function(error) {
       if (error) {
         fs.unlink(__dirname + '/tmp/test.png');
-        fs.rename(files.upload.path, __dirname + '/tmp/test.png');
+        fs.rename(files.upload.path, (__dirname + '/tmp/test.png'));
       }
   });
   response.writeHead(200, {'Content-Type': 'text/html'});
