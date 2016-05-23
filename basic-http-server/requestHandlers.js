@@ -4,7 +4,7 @@ function start() {
   console.log("Request handler 'start' was called.");
   var content = 'empty';
 
-  exec('is - iah', function (error, stdout, stderr) {
+  exec('ls - lah', function (error, stdout, stderr) {
     content = stdout;
   });
 
